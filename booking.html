@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking — Looking4Luke</title>
+<meta name="description" content="Book Looking4Luke, an acoustic guitar, piano, and percussion trio, for your wedding, party, or venue.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand"><span class="record-dot" aria-hidden="true"></span>Looking4Luke</a>
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio</a>
+      <a href="events.html">Events</a>
+      <a href="booking.html" class="active">Booking</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Let's Play Your Event</span>
+        <h2>Book the Band</h2>
+      </div>
+
+      <div class="booking-layout">
+        <div>
+          <div class="contact-card">
+            <h3>Get in Touch</h3>
+            <div class="contact-line">
+              <span class="label">Contact</span>
+              <span>Mark Christensen</span>
+            </div>
+            <div class="contact-line">
+              <span class="label">Phone</span>
+              <a href="tel:5157789135">515&#8209;778&#8209;9135</a>
+            </div>
+            <p style="margin-top:22px;">Call or text with your date, location, and what you have in mind &mdash; we'll follow up with availability and pricing.</p>
+          </div>
+
+          <div class="card" style="margin-top:26px;">
+            <h3>Good to Know</h3>
+            <p><em>[Add details here that help people book with confidence &mdash; typical set length, travel radius, whether you need a power outlet or space requirements, sound system needs, deposit/pricing policy, etc.]</em></p>
+          </div>
+        </div>
+
+        <div>
+          <form class="booking-form" id="bookingForm">
+            <div class="field">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="date">Event Date</label>
+                <input type="date" id="date" name="date">
+              </div>
+              <div class="field">
+                <label for="eventType">Event Type</label>
+                <select id="eventType" name="eventType">
+                  <option value="Wedding">Wedding</option>
+                  <option value="Private Party">Private Party</option>
+                  <option value="Bar / Brewery">Bar / Brewery</option>
+                  <option value="Festival">Festival</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="location">Venue / Location</label>
+              <input type="text" id="location" name="location" placeholder="City, venue name">
+            </div>
+
+            <div class="field">
+              <label for="details">Tell Us About Your Event</label>
+              <textarea id="details" name="details" rows="5" placeholder="Guest count, timing, any special requests"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Send Inquiry</button>
+            <p class="submit-note">This opens an email to Mark with your details filled in &mdash; you can review it before sending.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-band">Looking4Luke</div>
+    <p>Acoustic guitar, piano &amp; percussion &middot; 70s rock and modern country</p>
+    <p>Booking: <a href="tel:5157789135">515&#8209;778&#8209;9135</a> (Mark Christensen) &middot; <a href="booking.html">Booking page</a></p>
+  </div>
+</footer>
+
+<script>
+  // NOTE: No booking email was provided yet, so this opens a pre-filled
+  // email draft using a placeholder address. Replace BOOKING_EMAIL below
+  // with the real address you want inquiries sent to.
+  const BOOKING_EMAIL = "booking@looking4luke.com";
+
+  document.getElementById("bookingForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const subject = encodeURIComponent("Booking Inquiry — Looking4Luke");
+    const body = encodeURIComponent(
+      `Name: ${f.get("name")}\n` +
+      `Phone: ${f.get("phone")}\n` +
+      `Email: ${f.get("email")}\n` +
+      `Event Date: ${f.get("date")}\n` +
+      `Event Type: ${f.get("eventType")}\n` +
+      `Venue / Location: ${f.get("location")}\n\n` +
+      `Details:\n${f.get("details")}`
+    );
+    window.location.href = `mailto:${BOOKING_EMAIL}?subject=${subject}&body=${body}`;
+  });
+</script>
+
+</body>
+</html>
